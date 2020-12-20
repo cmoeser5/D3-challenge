@@ -36,8 +36,7 @@ let chosenYAxis = 'healthcare';
 function xScale(censusData, chosenXAxis) {
     //scales
     let xLinearScale = d3.scaleLinear()
-      .domain([d3.min(censusData, d => d[chosenXAxis]) * 0.8,
-        d3.max(censusData, d => d[chosenXAxis]) * 1.2])
+      .domain([d3.min(censusData, d => d[chosenXAxis]) * 0.8, d3.max(censusData, d => d[chosenXAxis]) * 1.2])
       .range([0, width]);
 
     return xLinearScale;
@@ -46,8 +45,7 @@ function xScale(censusData, chosenXAxis) {
 function yScale(censusData, chosenYAxis) {
   //scales
   let yLinearScale = d3.scaleLinear()
-    .domain([d3.min(censusData, d => d[chosenYAxis]) * 0.8,
-      d3.max(censusData, d => d[chosenYAxis]) * 1.2])
+    .domain([d3.min(censusData, d => d[chosenYAxis]) * 0.8, d3.max(censusData, d => d[chosenYAxis]) * 1.2])
     .range([height, 0]);
 
   return yLinearScale;
@@ -149,7 +147,7 @@ function updateToolTip(chosenXAxis, chosenYAxis, circlesGroup) {
     return circlesGroup;
 }
 //retrieve data
-d3.csv('./assets/data/data.csv').then(function(censusData) {
+d3.csv('assets/data/data.csv').then(function(censusData) {
 
     console.log(censusData);
     
