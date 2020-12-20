@@ -97,3 +97,60 @@ function renderText(textGroup, newXScale, chosenXAxis, newYScale, chosenYAxis) {
 
     return textGroup
 }
+
+// x axis tool tips 
+function styleX(value, chosenXAxis) {
+
+    //poverty
+    if (chosenXAxis === 'poverty') {
+        return `${value}%`;
+    }
+    //household income
+    else if (chosenXAxis === 'income') {
+        return `${value}`;
+    }
+    else {
+      return `${value}`;
+    }
+}
+
+// updating circles group
+function updateToolTip(chosenXAxis, chosenYAxis, circlesGroup) {
+    // x axis
+    if (chosenXAxis === 'poverty') {
+      var xLabel = 'Poverty:';
+    }
+    else if (chosenXAxis === 'income'){
+      var xLabel = 'Median Income:';
+    }
+    else {
+      var xLabel = 'Age:';
+    }
+
+    // y axis
+    if (chosenYAxis ==='healthcare') {
+        var yLabel = "No Healthcare:"
+    }
+    else if(chosenYAxis === 'obesity') {
+        var yLabel = 'Obesity:';
+    }
+    else{
+        var yLabel = 'Smokers:';
+    }
+
+    //create tooltip
+    var toolTip = d3.tip()
+        .attr('class', 'd3-tip')
+        .offset([-8, 0])
+        .html(function(d) {
+            return (`${d.state}<br>${xLabel} ${styleX(d[chosenXAxis], chosenXAxis)}<br>${yLabel} ${d[chosenYAxis]}%`);
+    });
+
+    circlesGroup.call(toolTip);
+
+    //add
+    circlesGroup.on('mouseover', toolTip.show)
+        .on('mouseout', toolTip.hide);
+
+        return circlesGroup;
+    }
