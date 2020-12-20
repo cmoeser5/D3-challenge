@@ -170,16 +170,10 @@ d3.csv('assets/data/data.csv').then(function(censusData) {
     var leftAxis = d3.axisLeft(yLinearScale);
 
     //append X
-    var xAxis = chartGroup.append('g')
-      .classed('x-axis', true)
-      .attr('transform', `translate(0, ${height})`)
-      .call(bottomAxis);
+    var xAxis = chartGroup.append('g').classed('x-axis', true).attr('transform', `translate(0, ${height})`).call(bottomAxis);
 
     //append Y
-    var yAxis = chartGroup.append('g')
-      .classed('y-axis', true)
-      //.attr
-      .call(leftAxis);
+    var yAxis = chartGroup.append('g').classed('y-axis', true).call(leftAxis);
     
     //append Circles
     var circlesGroup = chartGroup.selectAll('circle')
@@ -270,8 +264,7 @@ d3.csv('assets/data/data.csv').then(function(censusData) {
     var circlesGroup = updateToolTip(chosenXAxis, chosenYAxis, circlesGroup);
 
     //x axis event listener
-    xLabelsGroup.selectAll('text')
-      .on('click', function() {
+    xLabelsGroup.selectAll('text').on('click', function() {
         var value = d3.select(this).attr('value');
 
         if (value != chosenXAxis) {
@@ -311,10 +304,9 @@ d3.csv('assets/data/data.csv').then(function(censusData) {
             incomeLabel.classed('active', true).classed('inactive', false);
           }
         }
-      });
+    });
     //y axis lables event listener
-    yLabelsGroup.selectAll('text')
-      .on('click', function() {
+    yLabelsGroup.selectAll('text').on('click', function() {
         var value = d3.select(this).attr('value');
 
         if(value !=chosenYAxis) {
@@ -352,6 +344,6 @@ d3.csv('assets/data/data.csv').then(function(censusData) {
               smokesLabel.classed('active', false).classed('inactive', true);
               healthcareLabel.classed('active', true).classed('inactive', false);
             }
-          }
-        });
+        }
+    });
 });
