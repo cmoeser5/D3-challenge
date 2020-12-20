@@ -1,4 +1,4 @@
-// set up svg
+// Set up svg 
 let svgWidth = 960;
 let svgHeight = 620;
 
@@ -10,7 +10,7 @@ let margin = {
   left: 100
 };
 
-// chart height and width
+// calculate chart height and width
 let width = svgWidth - margin.right - margin.left;
 let height = svgHeight - margin.top - margin.bottom;
 
@@ -32,7 +32,7 @@ let chartGroup = svg.append('g')
 let chosenXAxis = 'poverty';
 let chosenYAxis = 'healthcare';
 
-//a function for updating the x-scale variable
+//a function for updating the x-scale variable upon click of label
 function xScale(censusData, chosenXAxis) {
     //scales
     let xLinearScale = d3.scaleLinear()
@@ -42,8 +42,9 @@ function xScale(censusData, chosenXAxis) {
 
     return xLinearScale;
 }
-//function for updating y-scale variable
+//a function for updating y-scale variable upon click of label
 function yScale(censusData, chosenYAxis) {
+  //scales
   let yLinearScale = d3.scaleLinear()
     .domain([d3.min(censusData, d => d[chosenYAxis]) * 0.8,
       d3.max(censusData, d => d[chosenYAxis]) * 1.2])
@@ -51,7 +52,7 @@ function yScale(censusData, chosenYAxis) {
 
   return yLinearScale;
 }
-//function for updating the x axis
+//a function for updating the xAxis upon click
 function renderXAxis(newXScale, xAxis) {
   let bottomAxis = d3.axisBottom(newXScale);
 
@@ -62,7 +63,7 @@ function renderXAxis(newXScale, xAxis) {
   return xAxis;
 }
 
-//function used for updating y axis
+//function used for updating yAxis variable upon click
 function renderYAxis(newYScale, yAxis) {
   var leftAxis = d3.axisLeft(newYScale);
 
@@ -73,7 +74,7 @@ function renderYAxis(newYScale, yAxis) {
   return yAxis;
 }
 
-//function for updating the circles with a transition
+//a function for updating the circles with a transition to new circles 
 function renderCircles(circlesGroup, newXScale, chosenXAxis, newYScale, chosenYAxis) {
 
     circlesGroup.transition()
@@ -110,7 +111,7 @@ function styleX(value, chosenXAxis) {
 
 //funtion for updating circles group
 function updateToolTip(chosenXAxis, chosenYAxis, circlesGroup) {
-    // x label
+
     if (chosenXAxis === 'poverty') {
       var xLabel = 'Poverty:';
     }
@@ -120,33 +121,33 @@ function updateToolTip(chosenXAxis, chosenYAxis, circlesGroup) {
     else {
       var xLabel = 'Age:';
     }
-    //y label
-    if (chosenYAxis ==='healthcare') {
-        var yLabel = "No Healthcare:"
-    }
-    else if(chosenYAxis === 'obesity') {
-        var yLabel = 'Obesity:';
-    }
-    else{
-        var yLabel = 'Smokers:';
-    }
+//y label
+  if (chosenYAxis ==='healthcare') {
+    var yLabel = "No Healthcare:"
+  }
+  else if(chosenYAxis === 'obesity') {
+    var yLabel = 'Obesity:';
+  }
+  else{
+    var yLabel = 'Smokers:';
+  }
 
-    //create tooltip
-    var toolTip = d3.tip()
-        .attr('class', 'd3-tip')
-        .offset([-8, 0])
-        .html(function(d) {
-            return (`${d.state}<br>${xLabel} ${styleX(d[chosenXAxis], chosenXAxis)}<br>${yLabel} ${d[chosenYAxis]}%`);
-    });
+  //create tooltip
+  var toolTip = d3.tip()
+    .attr('class', 'd3-tip')
+    .offset([-8, 0])
+    .html(function(d) {
+        return (`${d.state}<br>${xLabel} ${styleX(d[chosenXAxis], chosenXAxis)}<br>${yLabel} ${d[chosenYAxis]}%`);
+  });
 
-    circlesGroup.call(toolTip);
+  circlesGroup.call(toolTip);
 
-    circlesGroup.on('mouseover', toolTip.show)
-        .on('mouseout', toolTip.hide);
+  //add
+  circlesGroup.on('mouseover', toolTip.show)
+    .on('mouseout', toolTip.hide);
 
-        return circlesGroup;
+    return circlesGroup;
 }
-
 //retrieve data
 d3.csv('./assets/data/data.csv').then(function(censusData) {
 
@@ -182,7 +183,7 @@ d3.csv('./assets/data/data.csv').then(function(censusData) {
       //.attr
       .call(leftAxis);
     
-    //append circle
+    //append Circles
     var circlesGroup = chartGroup.selectAll('circle')
       .data(censusData)
       .enter()
@@ -328,7 +329,7 @@ d3.csv('./assets/data/data.csv').then(function(censusData) {
             //update Y axis 
             yAxis = renderYAxis(yLinearScale, yAxis);
 
-            //Update circle with new y
+            //Udate circles with new y
             circlesGroup = renderCircles(circlesGroup, xLinearScale, chosenXAxis, yLinearScale, chosenYAxis);
 
             //update text with new Y values
