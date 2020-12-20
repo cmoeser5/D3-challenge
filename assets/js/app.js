@@ -75,3 +75,25 @@ function renderYAxis(newYScale, yAxis) {
   
     return yAxis;
 }
+
+// function for updating the circles
+function renderCircles(circlesGroup, newXScale, chosenXAxis, newYScale, chosenYAxis) {
+
+    circlesGroup.transition()
+      .duration(2000)
+      .attr('cx', data => newXScale(data[chosenXAxis]))
+      .attr('cy', data => newYScale(data[chosenYAxis]))
+
+    return circlesGroup;
+}
+
+// function for updating labels
+function renderText(textGroup, newXScale, chosenXAxis, newYScale, chosenYAxis) {
+
+    textGroup.transition()
+      .duration(2000)
+      .attr('x', d => newXScale(d[chosenXAxis]))
+      .attr('y', d => newYScale(d[chosenYAxis]));
+
+    return textGroup
+}
