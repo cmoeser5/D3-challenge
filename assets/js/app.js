@@ -355,7 +355,7 @@ d3.csv("assets/data/data.csv").then(function (censusData) {
       //update Y axis
       yAxis = renderYAxis(yLinearScale, yAxis);
 
-      //Udate CIRCLES with new y
+      //Update circle with new y
       circlesGroup = renderCircles(
         circlesGroup,
         xLinearScale,
@@ -364,7 +364,7 @@ d3.csv("assets/data/data.csv").then(function (censusData) {
         chosenYAxis
       );
 
-      //update TEXT with new Y values
+      //update text with new y values
       textGroup = renderText(
         textGroup,
         xLinearScale,
@@ -376,7 +376,7 @@ d3.csv("assets/data/data.csv").then(function (censusData) {
       //update tooltips
       circlesGroup = updateToolTip(chosenXAxis, chosenYAxis, circlesGroup);
 
-      //Change of the classes changes text
+      //change of the classes changes text
       if (chosenYAxis === "obesity") {
         obesityLabel.classed("active", true).classed("inactive", false);
         smokesLabel.classed("active", false).classed("inactive", true);
