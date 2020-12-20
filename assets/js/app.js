@@ -1,6 +1,6 @@
 // Set up svg
 let svgWidth = 960;
-let svgHeight = 620;
+let svgHeight = 600;
 
 // set up margins
 let margin = {
@@ -19,15 +19,59 @@ let chart = d3.select('#scatter')
   .append('div')
   .classed('chart', true);
 
-//append an svg element to the chart 
+// append an svg element to the chart 
 let svg = chart.append('svg')
   .attr('width', svgWidth)
   .attr('height', svgHeight);
 
-//append an svg group
+// append an svg group
 let chartGroup = svg.append('g')
   .attr('transform', `translate(${margin.left}, ${margin.top})`);
 
-//initial parameters; x and y axis
+// initial parameters; x and y axis
 let chosenXAxis = 'poverty';
 let chosenYAxis = 'healthcare';
+
+// function for updating the x-scale 
+function xScale(censusData, chosenXAxis) {
+    
+    let xLinear = d3.scaleLinear()
+      .domain([d3.min(censusData, d => d[chosenXAxis]) * 0.8,
+        d3.max(censusData, d => d[chosenXAxis]) * 1.2])
+      .range([0, chartWidth]);
+
+    return xLinear;
+}
+
+// function for updating y-scale
+function yScale(censusData, chosenYAxis) {
+    //scales
+    let yLinear = d3.scaleLinear()
+      .domain([d3.min(censusData, d => d[chosenYAxis]) * 0.8,
+        d3.max(censusData, d => d[chosenYAxis]) * 1.2])
+      .range([chartHeight, 0]);
+  
+    return yLinear;
+}
+
+// function for updating the x axis
+function renderXAxis(newXScale, xAxis) {
+    let bottomAxis = d3.axisBottom(newXScale);
+  
+    xAxis.transition()
+      .duration(2000)
+      .call(bottomAxis);
+  
+    return xAxis;
+}
+
+// function used for updating y axis
+function renderYAxis(newYScale, yAxis) {
+    var leftAxis = d3.axisLeft(newYScale);
+  
+    yAxis.transition()
+      .duration(2000)
+      .call(leftAxis);
+  
+    return yAxis;
+}
