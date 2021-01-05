@@ -10,7 +10,7 @@ Analyze the health risks facing particular demographics with the dataset provide
 
 ## Objectives
 * Create a dynamic scatter plot that represents each state with circle elements. 
-* The plot will include additional labels and have click elements so users can decide which data to display.
+* The plot will include additional labels and have click elements so users can decide which data to display. Animate the transitions for the circles' locations as well as the range of the axes.
 
 ### Static Image of Scatter Plot
 ![static image](images/scatter_plot.png)
@@ -18,4 +18,4 @@ Analyze the health risks facing particular demographics with the dataset provide
 ### Dynamic Scatter Plot
 ![dynamic image](images/scatter_plot.gif)
 
-https://cmoeser5.github.io/D3-challenge/
+Deployed link: https://cmoeser5.github.io/D3-challenge/
