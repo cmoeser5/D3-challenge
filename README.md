@@ -16,4 +16,9 @@ Created dynamic scatter plot that represents each state with circle elements. Th
 ### Dynamic Scatter Plot
 ![dynamic image](images/scatter_plot.gif)
 
+## Conclusions
+* States with higher rates of poverity tend to higher rates of residents with no healthcare and higher rates of obesity
+* The median age of residents without healthcare is lower in states that have a higher percentage of residents without healthcare.
+* States with a higher obesity percentage tend to have a lower median household income.
+
 Deployed link: https://cmoeser5.github.io/D3-challenge/
