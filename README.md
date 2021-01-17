@@ -1,4 +1,4 @@
-# Data Journalism and D3
+# Health Risk Analysis with D3
 
 ## Background
 Analyzed the health risks facing particular demographics with the dataset provided by creating charts, graphs and interactive elements. The dataset used is from the U.S. Census Bureau is based on the 2014 ACS (American Community Survey) and included data on rates of income, obesity, poverty, smoking, age and lack of healthcare.
